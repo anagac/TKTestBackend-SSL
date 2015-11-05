@@ -23,9 +23,11 @@ app.start = function(httpOnly) {
   } else {
     server = http.createServer(app);
   }
-  return server.listen(function() {
+  return server.listen(app.get('port'), function() {
     var baseUrl = (httpOnly? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
+    console.log(httpOnly);
+    console.log(baseUrl);
     console.log('Web server listening at: %s', app.get('url'));
   });
 };
