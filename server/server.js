@@ -23,7 +23,7 @@ app.start = function(httpOnly) {
   } else {
     server = http.createServer(app);
   }
-  return server.isten(function() {
+  return server.listen(function() {
     var baseUrl = (httpOnly? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
     console.log('Web server listening at: %s', app.get('url'));
