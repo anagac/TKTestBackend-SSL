@@ -1,12 +1,31 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
+var http = require('http');
+var https = require('https');
+
+var sslConfig = require('./ssl-config');
+
 var app = module.exports = loopback();
 
-app.start = function() {
+app.start = function(httpOnly) {
   // start the web server
-  return app.listen(function() {
-    app.emit('started');
+  if(httpOnly === undefined) {
+    httpOnly = process.env.HTTP;
+  }
+  var server = null;
+  if(!httpOnly) {
+    var options = {
+      key: sslConfig.privateKey,
+      cert: sslConfig.certificate
+    };
+    server = https.createServer(options, app);
+  } else {
+    server = http.createServer(app);
+  }
+  return server.isten(function() {
+    var baseUrl = (httpOnly? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');
+    app.emit('started', baseUrl);
     console.log('Web server listening at: %s', app.get('url'));
   });
 };
