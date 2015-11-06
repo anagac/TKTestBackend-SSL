@@ -19,7 +19,7 @@ app.start = function(httpOnly) {
       key: sslConfig.privateKey,
       cert: sslConfig.certificate,
       rejectUnauthorized: false,
-      requestCert: true
+      requestCert: false
     };
     server = https.createServer(options, app);
   } else {
