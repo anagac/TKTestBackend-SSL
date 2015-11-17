@@ -2,9 +2,11 @@
   "db": {
     "name": "db",
     "connector": "memory"
+    
   },
   "mongo": {
     "name": "mongo",
-    "connector": "mongodb"
+    "connector": "mongodb",
+    "url": "https://ec2-52-34-129-218.us-west-2.compute.amazonaws.com:27017"
   }
 }
