@@ -7,6 +7,7 @@
   "mongo": {
     "name": "mongo",
     "connector": "mongodb",
-    "url": "https://ec2-52-34-129-218.us-west-2.compute.amazonaws.com:27017"
+    "url": "https://ec2-52-34-129-218.us-west-2.compute.amazonaws.com",
+    "port": 27017
   }
 }
